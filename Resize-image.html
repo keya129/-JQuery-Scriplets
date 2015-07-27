@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Resize Your Image</title>
+<script>
+
+
+function sizechange()
+{
+isize = document.getElementById("size");
+img = document.getElementById("size");
+var w=document.getElementById("width").value + 'px';
+var h=document.getElementById("height").value + 'px';
+alert(w);
+alert(h);
+isize.style.width = w;
+isize.style.height = h;
+    // atob to base64_decode the data-URI
+    var image_data = atob(img.src.split(',')[1]);
+    // Use typed arrays to convert the binary data to a Blob
+    var arraybuffer = new ArrayBuffer(image_data.length);
+    var view = new Uint8Array(arraybuffer);
+    for (var i=0; i<image_data.length; i++) {
+        view[i] = image_data.charCodeAt(i) & 0xff;
+    }
+    try {
+        // This is the recommended method:
+        var blob = new Blob([arraybuffer], {type: 'application/octet-stream'});
+    } catch (e) {
+        // The BlobBuilder API has been deprecated in favour of Blob, but older
+        // browsers don't know about the Blob constructor
+        // IE10 also supports BlobBuilder, but since the `Blob` constructor
+        //  also works, there's no need to add `MSBlobBuilder`.
+        var bb = new (window.WebKitBlobBuilder || window.MozBlobBuilder);
+        bb.append(arraybuffer);
+        var blob = bb.getBlob('application/octet-stream'); // <-- Here's the Blob
+    }
+
+    // Use the URL object to create a temporary URL
+    var url = (window.webkitURL || window.URL).createObjectURL(blob);
+    location.href = url; // <-- Download!
+}
+
+
+</script>
+</head>
+<body >
+
+<p>Image Resize</p>
+
+<img id="size" src="http://bestinspired.com/wp-content/uploads/2015/03/2ba7dbaa96e79e4c81dd7808706d2bb7_nature.jpeg" alt="" width="500px" height="500px" /> width:
+<input type="text" name="width" id="width" value="" />
+height:
+<input type="text" name="height" id="height" value="" />
+<input type="submit" name="submit" id="submit" onclick="sizechange()" />
+
+<a href="http://bestinspired.com/wp-content/uploads/2015/03/2ba7dbaa96e79e4c81dd7808706d2bb7_nature.jpeg" download="http://bestinspired.com/wp-content/uploads/2015/03/2ba7dbaa96e79e4c81dd7808706d2bb7_nature.jpeg">Download</a>
+
+</body>
+</html>
