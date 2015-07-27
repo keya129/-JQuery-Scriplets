@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style>
+		.highlighted { background: yellow; }
+</style>
+ 
+    
+</head>
+
+<body>
+Search:
+<table class="filterable" border="1px solid #333;">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Phone No</th>
+				<th>E-Mail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Hsssk</td>
+				<td>Team Leader and Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Misssa</td>
+				<td>Team Leader and Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Prassp</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Nisssl</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Sujtt</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Mitaq</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Nimddt</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Fir</td>
+				<td>Sr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Deepty</td>
+				<td>Jr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+            <tr>
+				<td>Diplaak</td>
+				<td>Jr. Web Developer</td>
+				<td>0000000000</td>    
+				<td>xyz@gmail.com</td>
+			</tr>
+		</tbody>
+	</table>
+    
+</body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+function filterTable(term, table) {
+	dehighlight(table);
+	var terms = term.value.toLowerCase().split(" ");
+
+	for (var r = 1; r < table.rows.length; r++) {
+		var display = '';
+		for (var i = 0; i < terms.length; i++) {
+			if (table.rows[r].innerHTML.replace(/<[^>]+>/g, "").toLowerCase()
+				.indexOf(terms[i]) < 0) {
+				display = 'none';
+			} else {
+				if (terms[i].length) highlight(terms[i], table.rows[r]);
+			}
+			table.rows[r].style.display = display;
+		}
+	}
+}
+
+function dehighlight(container) {
+	for (var i = 0; i < container.childNodes.length; i++) {
+		var node = container.childNodes[i];
+
+		if (node.attributes && node.attributes['class']
+			&& node.attributes['class'].value == 'highlighted') {
+			node.parentNode.parentNode.replaceChild(
+					document.createTextNode(
+						node.parentNode.innerHTML.replace(/<[^>]+>/g, "")),
+					node.parentNode);
+			
+			return;
+		} else if (node.nodeType != 3) {
+			
+			dehighlight(node);
+		}
+	}
+}
+
+function highlight(term, container) {
+	for (var i = 0; i < container.childNodes.length; i++) {
+		var node = container.childNodes[i];
+
+		if (node.nodeType == 3) {
+			
+			var data = node.data;
+			var data_low = data.toLowerCase();
+			if (data_low.indexOf(term) >= 0) {
+				
+				var new_node = document.createElement('span');
+
+				node.parentNode.replaceChild(new_node, node);
+
+				var result;
+				while ((result = data_low.indexOf(term)) != -1) {
+					new_node.appendChild(document.createTextNode(
+								data.substr(0, result)));
+					new_node.appendChild(create_node(
+								document.createTextNode(data.substr(
+										result, term.length))));
+					data = data.substr(result + term.length);
+					data_low = data_low.substr(result + term.length);
+				}
+				new_node.appendChild(document.createTextNode(data));
+			}
+		} else {
+			
+			highlight(term, node);
+		}
+	}
+}
+
+function create_node(child) {
+	var node = document.createElement('span');
+	node.setAttribute('class', 'highlighted');
+	node.attributes['class'].value = 'highlighted';
+	node.appendChild(child);
+	return node;
+}
+
+tables = document.getElementsByTagName('table');
+for (var t = 0; t < tables.length; t++) {
+	element = tables[t];
+
+	if (element.attributes['class']
+		&& element.attributes['class'].value == 'filterable') {
+
+		
+		var form = document.createElement('form');
+		form.setAttribute('class', 'filter');
+		
+		form.attributes['class'].value = 'filter';
+		var input = document.createElement('input');
+		input.onkeyup = function() {
+			filterTable(input, element);
+		}
+		form.appendChild(input);
+		element.parentNode.insertBefore(form, element);
+	}
+}
+    </script>
+</html>
