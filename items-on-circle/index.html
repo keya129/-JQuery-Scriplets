@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Items on circle</title>
+
+ 
+
+    <style>
+
+.circle-container {
+  position: relative;
+  /* [1] */
+  width: 20em;
+  height: 20em;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+  /* [2] */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  /* [3] */
+  margin: 5em auto 0;
+  border: solid 5px #ffffff;
+  background:#294654;
+}
+.circle-container > * {
+  /* [4] */
+  display: block;
+  position: absolute;
+  top: 37%;
+  left: 60%;
+  width: 2em;
+  height: 6em;
+  margin: -3em;
+}
+.circle-container > *:nth-of-type(1) {
+  -moz-transform: rotate(25deg) translate(-10.5em) rotate(-25deg);
+  -ms-transform: rotate(25deg) translate(-10.5em) rotate(-25deg);
+  -webkit-transform: rotate(25deg) translate(-10.5em) rotate(-25deg);
+  transform: rotate(25deg) translate(-10.5em) rotate(-25deg);
+}
+.circle-container > *:nth-of-type(2) {
+  -moz-transform: rotate(65deg) translate(-10.5em) rotate(-65deg);
+  -ms-transform: rotate(65deg) translate(-10.5em) rotate(-65deg);
+  -webkit-transform: rotate(65deg) translate(-10.5em) rotate(-65deg);
+  transform: rotate(65deg) translate(-10.5em) rotate(-65deg);
+}
+.circle-container > *:nth-of-type(3) {
+  -moz-transform: rotate(120deg) translate(-10.5em) rotate(-120deg);
+  -ms-transform: rotate(120deg) translate(-10.5em) rotate(-120deg);
+  -webkit-transform: rotate(120deg) translate(-10.5em) rotate(-120deg);
+  transform: rotate(120deg) translate(-10.5em) rotate(-120deg);
+}
+.circle-container > *:nth-of-type(4) {
+  -moz-transform: rotate(155deg) translate(-10.5em) rotate(-155deg);
+  -ms-transform: rotate(155deg) translate(-10.5em) rotate(-155deg);
+  -webkit-transform: rotate(155deg) translate(-10.5em) rotate(-155deg);
+  transform: rotate(155deg) translate(-10.5em) rotate(-155deg);
+}
+.circle-container > *:nth-of-type(5) {
+  -moz-transform: rotate(165deg) translate(-10.5em) rotate(-180deg);
+  -ms-transform: rotate(180deg) translate(-10.5em) rotate(-180deg);
+  -webkit-transform: rotate(180deg) translate(-10.5em) rotate(-180deg);
+  transform: rotate(180deg) translate(-10.5em) rotate(-180deg);
+}
+.circle-container > *:nth-of-type(6) {
+  -moz-transform: rotate(225deg) translate(-10.5em) rotate(-225deg);
+  -ms-transform: rotate(225deg) translate(-10.5em) rotate(-225deg);
+  -webkit-transform: rotate(225deg) translate(-10.5em) rotate(-225deg);
+  transform: rotate(225deg) translate(-10.5em) rotate(-225deg);
+}
+.circle-container > *:nth-of-type(7) {
+  -moz-transform: rotate(270deg) translate(-10.5em) rotate(-270deg);
+  -ms-transform: rotate(270deg) translate(-10.5em) rotate(-270deg);
+  -webkit-transform: rotate(270deg) translate(-10.5em) rotate(-270deg);
+  transform: rotate(270deg) translate(-10.5em) rotate(-270deg);
+}
+.circle-container > *:nth-of-type(8) {
+  -moz-transform: rotate(315deg) translate(-10.5em) rotate(-315deg);
+  -ms-transform: rotate(315deg) translate(-10.5em) rotate(-315deg);
+  -webkit-transform: rotate(315deg) translate(-10.5em) rotate(-315deg);
+  transform: rotate(315deg) translate(-10.5em) rotate(-315deg);
+}
+.circle-container a {
+  display: block;
+  border-radius: 50%;
+  
+}
+.circle-container img {
+  display: block;
+  width: 100%;
+  border-radius: 50%;
+}
+.circle-container img:hover {
+
+}
+.semi-nav-wrap{height:225px;overflow:hidden;float:left;width:100%;}
+body{background:#294654;}
+</style>
+
+    <script src="js/prefixfree.min.js"></script>
+
+    <script src="js/modernizr.js"></script>
+
+</head>
+
+<body>
+<div class="semi-nav-wrap">
+  <ul class='circle-container'>
+  <li><a href='#'>WHAT MAKES US DIFFERENT<img src="plus-nav.png" alt=""></a></li>
+  <li><a href='#'>WHAT MAKES US DIFFERENT<img src="plus-nav.png" alt=""></a></li>
+  <li><a href='#'>WHAT MAKES US DIFFERENT<img src="plus-nav.png" alt=""></a></li>
+  <li><a href='#'>WHAT MAKES US DIFFERENT<img src="plus-nav.png" alt=""></a></li>
+  
+</ul>
+</div>
+  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
