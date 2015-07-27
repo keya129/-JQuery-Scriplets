@@ -1,0 +1,34 @@
+<html>
+<head>
+
+<script>
+function showTime () {
+var time = new Date()
+var hour = time.getHours()
+var minute = time.getMinutes()
+var sMin = (minute<10) ? "0" + minute : minute
+var second = time.getSeconds()
+var sSecs = (second<10) ? "0" + second : second
+var strTime = hour + ":" + sMin + ":" +sSecs
+
+document.getElementById("clockbtn").value = strTime;
+var today = new Date();
+var cDate = today.getDate();
+var cMonth = today.getMonth();
+var cMonth=cMonth+1;
+var cYear = today.getFullYear();
+document.getElementById("clockdate").value = cDate+"/"+cMonth+"/"+cYear;
+}//showTime
+</script>
+</head>
+
+<body onload="setInterval(showTime, 1000)">
+<div id="clockFace" ></div>
+<p>Date</p>
+<input type="text" name="timer" size="12" id="clockdate"><br/>
+<p>Time</p>
+<input type="button" value="" id="clockbtn" ><br/>
+</body>
+</html>
+
+

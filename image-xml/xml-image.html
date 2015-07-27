@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<p id="someElement">Source of below image is coming via xml!!!</p>
+<p id="anotherElement"><img src="#" width="400px" height="300px" /></p>
+<script>
+
+$(document).ready(function(){
+	$.ajax({
+		type: "GET",
+		url: "data.xml",
+		dataType: "xml",
+		success: function(xml) {
+			$(xml).find('image').each(function(){
+				$title = $(xml).find( "src" );
+
+
+/* append src to #anotherElement */
+var src=$title.text();
+$( "#anotherElement img " ).attr("src", src);
+		
+		});
+		},
+		error:"this is error"
+	});
+});
+</script>
+</body>
+</html>
+
